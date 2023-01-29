@@ -2,7 +2,7 @@ import { Homepage } from '@src/pages'
 
 function App() {
     return (
-        <div className="h-screen w-full bg-blue-600 p-6">
+        <div className="h-full min-h-screen w-full bg-blue-600 p-6">
             <h1 className="mb-4 text-5xl font-extrabold text-white">
                 Currency converter
             </h1>

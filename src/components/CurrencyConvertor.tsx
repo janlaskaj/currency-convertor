@@ -1,9 +1,11 @@
 import { CurrencyDropdown, Spinner } from '@src/components'
 import { Currency, useCurrencyData } from '@src/hooks'
+import { useState } from 'react'
 
 export const CurrencyConvertor: React.FC<{
     convertCurrency: (targetCurrency: Currency, amount: number) => void
 }> = ({ convertCurrency }) => {
+    const [amountToConvert, setAmountToConvert] = useState(0)
     const { data, isLoading, error, selectedCurrency, setSelectedCurrency } =
         useCurrencyData()
 
@@ -22,6 +24,10 @@ export const CurrencyConvertor: React.FC<{
                 Amount in CZK
                 <input
                     type="number"
+                    value={amountToConvert}
+                    onChange={(event) =>
+                        setAmountToConvert(Number(event.target.value))
+                    }
                     className="rounded border-2 border-gray-200 py-2 px-4 text-xl font-semibold text-gray-700 shadow-sm focus:outline-gray-300"
                 />
             </div>
@@ -37,9 +43,11 @@ export const CurrencyConvertor: React.FC<{
                 className="mt-2 w-44 rounded border border-blue-500 px-8 py-2 font-semibold text-blue-700 disabled:border-gray-300 disabled:text-gray-300"
                 onClick={
                     selectedCurrency &&
-                    (() => convertCurrency(selectedCurrency, 0))
+                    (() => convertCurrency(selectedCurrency, amountToConvert))
                 }
-                disabled={selectedCurrency === undefined}
+                disabled={
+                    selectedCurrency === undefined || amountToConvert === 0
+                }
             >
                 Convert
             </button>

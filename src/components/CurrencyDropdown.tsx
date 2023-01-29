@@ -9,8 +9,8 @@ export const CurrencyDropdown: React.FC<{
     setSelectedCurrency: (option: Currency) => void
 }> = ({ allCurrencies, selectedCurrency, setSelectedCurrency }) => (
     <Menu as="div" className="relative inline-block">
-        <Menu.Button className="inline-flex w-full items-center justify-center gap-2 rounded border-2 border-gray-200 px-4 py-2 text-xl font-medium text-gray-700 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-            <span className="w-14">{selectedCurrency?.code ?? 'Currency'}</span>
+        <Menu.Button className="inline-flex w-full items-center justify-between gap-2 rounded border-2 border-gray-200 px-4 py-2 text-xl font-medium text-gray-700 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+            <span>{selectedCurrency?.code ?? 'Currency'}</span>
             <ChevronDown />
         </Menu.Button>
 

@@ -5,14 +5,14 @@ export const CurrencyConvertor: React.FC<{}> = ({}) => {
     const { data, isLoading, error, selectedCurrency, setSelectedCurrency } =
         useCurrencyData()
 
-    if (error) return <span>error...</span>
-
     if (isLoading)
         return (
             <div className="flex w-full justify-center">
                 <Spinner />
             </div>
         )
+
+    if (error || !data) return <span>error...</span>
 
     return (
         <div className="flex flex-col w-full bg-white rounded-xl p-6">
@@ -23,13 +23,11 @@ export const CurrencyConvertor: React.FC<{}> = ({}) => {
                     className="border-2 border-gray-200 shadow-sm rounded"
                 />
             </label>
-            {data && (
-                <CurrencyDropdown
-                    allCurrencies={data.allCurrencies}
-                    selectedCurrency={selectedCurrency}
-                    setSelectedCurrency={setSelectedCurrency}
-                />
-            )}
+            <CurrencyDropdown
+                allCurrencies={data.allCurrencies}
+                selectedCurrency={selectedCurrency}
+                setSelectedCurrency={setSelectedCurrency}
+            />
         </div>
     )
 }

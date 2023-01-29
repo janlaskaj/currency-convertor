@@ -1,5 +1,5 @@
-import { useCurrencyData } from '@src/hooks/useCurrencyData'
-import { CurrencyDropdown } from '@src/components/CurrencyDropdown'
+import { useCurrencyData } from '@src/hooks'
+import { CurrencyDropdown } from '@src/components'
 
 function App() {
     const { data, isLoading, error } = useCurrencyData()

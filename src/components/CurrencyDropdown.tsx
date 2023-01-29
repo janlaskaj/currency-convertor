@@ -30,7 +30,7 @@ export const CurrencyDropdown: React.FC<{
                 <Menu.Items className="absolute right-0 mt-2 w-16 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="px-1 py-1 ">
                         {options.map((option) => (
-                            <Menu.Item>
+                            <Menu.Item key={option.code}>
                                 {({ active }) => (
                                     <button
                                         className={`${

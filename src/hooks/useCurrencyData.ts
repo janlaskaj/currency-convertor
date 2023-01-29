@@ -8,16 +8,16 @@ export type Currency = {
     code: string
     rate: number
 }
-type ExchangeData = { date: string; exchangeRates: Currency[] }
+type ExchangeData = { date: string; allCurrencies: Currency[] }
 
 const proxyUrl = 'http://localhost:5001'
-const currencyDataUrl =
+const exchangeDataUrl =
     'https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt'
 const dateSeparator = '#'
-const currencySeparator = '|'
+const exchangeDataSeparator = '|'
 const descriptionLineIndex = 1
 
-const parseCurrencyData = (data?: string) => {
+const parseExchangeData = (data?: string) => {
     if (data === undefined) return undefined
 
     return data.split('\n').reduce<ExchangeData>(
@@ -33,10 +33,11 @@ const parseCurrencyData = (data?: string) => {
                 return previous
             }
 
-            const [country, name, amount, code, rate] =
-                current.split(currencySeparator)
+            const [country, name, amount, code, rate] = current.split(
+                exchangeDataSeparator
+            )
 
-            previous.exchangeRates.push({
+            previous.allCurrencies.push({
                 country,
                 name,
                 amount: Number(amount),
@@ -45,23 +46,25 @@ const parseCurrencyData = (data?: string) => {
             })
             return previous
         },
-        { date: '', exchangeRates: [] }
+        { date: '', allCurrencies: [] }
     )
 }
 
 export const useCurrencyData = () => {
-    const [selectedOption, setSelectedOption] = useState<Currency | undefined>()
+    const [selectedCurrency, setSelectedCurrency] = useState<
+        Currency | undefined
+    >()
 
     const { data, isLoading, error } = useQuery(['currencyData'], async () => {
-        const response = await fetch(`${proxyUrl}/${currencyDataUrl}`)
+        const response = await fetch(`${proxyUrl}/${exchangeDataUrl}`)
         return await response.text()
     })
 
     return {
-        data: parseCurrencyData(data),
+        data: parseExchangeData(data),
         isLoading,
         error,
-        selectedOption,
-        setSelectedOption,
+        selectedCurrency,
+        setSelectedCurrency,
     }
 }

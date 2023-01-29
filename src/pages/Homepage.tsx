@@ -2,7 +2,7 @@ import { CurrencyDropdown } from '@src/components'
 import { useCurrencyData } from '@src/hooks'
 
 export const Homepage = () => {
-    const { data, isLoading, error, selectedOption, setSelectedOption } =
+    const { data, isLoading, error, selectedCurrency, setSelectedCurrency } =
         useCurrencyData()
 
     if (error) return <span>error...</span>
@@ -11,9 +11,9 @@ export const Homepage = () => {
 
     return data ? (
         <CurrencyDropdown
-            options={data.exchangeRates}
-            selectedOption={selectedOption}
-            setSelectedOption={setSelectedOption}
+            allCurrencies={data.allCurrencies}
+            selectedCurrency={selectedCurrency}
+            setSelectedCurrency={setSelectedCurrency}
         />
     ) : null
 }

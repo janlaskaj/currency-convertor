@@ -1,7 +1,9 @@
 import { CurrencyDropdown, Spinner } from '@src/components'
-import { useCurrencyData } from '@src/hooks'
+import { Currency, useCurrencyData } from '@src/hooks'
 
-export const CurrencyConvertor: React.FC<{}> = ({}) => {
+export const CurrencyConvertor: React.FC<{
+    convertCurrency: (targetCurrency: Currency, amount: number) => void
+}> = ({ convertCurrency }) => {
     const { data, isLoading, error, selectedCurrency, setSelectedCurrency } =
         useCurrencyData()
 
@@ -31,7 +33,14 @@ export const CurrencyConvertor: React.FC<{}> = ({}) => {
                     setSelectedCurrency={setSelectedCurrency}
                 />
             </div>
-            <button className="mt-2 w-44 rounded border border-blue-500 px-8 py-2 font-semibold text-blue-700">
+            <button
+                className="mt-2 w-44 rounded border border-blue-500 px-8 py-2 font-semibold text-blue-700 disabled:border-gray-300 disabled:text-gray-300"
+                onClick={
+                    selectedCurrency &&
+                    (() => convertCurrency(selectedCurrency, 0))
+                }
+                disabled={selectedCurrency === undefined}
+            >
                 Convert
             </button>
         </div>

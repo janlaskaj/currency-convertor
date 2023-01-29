@@ -24,7 +24,7 @@ export const Homepage = () => {
                         </button>
 
                         <span>{convertedCurrency.amount} CZK</span>
-                        <span className="text-2xl font-extrabold text-blue-500">
+                        <span className="text-3xl font-extrabold text-blue-500">
                             {convertedCurrency.result.toFixed(3)}{' '}
                             {convertedCurrency.targetCurrency.code}
                         </span>

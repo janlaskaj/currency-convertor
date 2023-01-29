@@ -5,7 +5,9 @@ function App() {
     const { data, isLoading, error, selectedOption, setSelectedOption } =
         useCurrencyData()
 
-    console.log(data)
+    if (error) return <span>error...</span>
+
+    if (isLoading) return <span>loading...</span>
 
     return (
         <div className="App">

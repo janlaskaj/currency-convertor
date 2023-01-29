@@ -5,7 +5,7 @@ import { useState } from 'react'
 export const CurrencyConvertor: React.FC<{
     convertCurrency: (targetCurrency: Currency, amount: number) => void
 }> = ({ convertCurrency }) => {
-    const [amountToConvert, setAmountToConvert] = useState(0)
+    const [amountToConvert, setAmountToConvert] = useState<number>()
     const { data, isLoading, error, selectedCurrency, setSelectedCurrency } =
         useCurrencyData()
 
@@ -24,7 +24,8 @@ export const CurrencyConvertor: React.FC<{
                 Amount in CZK
                 <input
                     type="number"
-                    value={amountToConvert}
+                    value={amountToConvert === 0 ? undefined : amountToConvert}
+                    step="any"
                     onChange={(event) =>
                         setAmountToConvert(Number(event.target.value))
                     }
@@ -42,8 +43,10 @@ export const CurrencyConvertor: React.FC<{
             <button
                 className="mt-2 w-44 rounded border border-blue-500 px-8 py-2 font-semibold text-blue-700 disabled:border-gray-300 disabled:text-gray-300"
                 onClick={
-                    selectedCurrency &&
-                    (() => convertCurrency(selectedCurrency, amountToConvert))
+                    selectedCurrency && amountToConvert
+                        ? () =>
+                              convertCurrency(selectedCurrency, amountToConvert)
+                        : undefined
                 }
                 disabled={
                     selectedCurrency === undefined || amountToConvert === 0

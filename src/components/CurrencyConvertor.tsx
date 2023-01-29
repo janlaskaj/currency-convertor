@@ -16,18 +16,21 @@ export const CurrencyConvertor: React.FC<{}> = ({}) => {
 
     return (
         <div className="flex flex-col w-full bg-white rounded-xl p-6">
-            <label className="text-gray-500">
+            <div className="text-gray-400 flex flex-col">
                 Amount in CZK
                 <input
                     type="number"
-                    className="border-2 border-gray-200 shadow-sm rounded"
+                    className="text-gray-700 border-2 border-gray-200 shadow-sm rounded py-2 px-3 text-xl font-semibold"
                 />
-            </label>
-            <CurrencyDropdown
-                allCurrencies={data.allCurrencies}
-                selectedCurrency={selectedCurrency}
-                setSelectedCurrency={setSelectedCurrency}
-            />
+            </div>
+            <div className="text-gray-400 flex flex-col">
+                Convert to
+                <CurrencyDropdown
+                    allCurrencies={data.allCurrencies}
+                    selectedCurrency={selectedCurrency}
+                    setSelectedCurrency={setSelectedCurrency}
+                />
+            </div>
         </div>
     )
 }

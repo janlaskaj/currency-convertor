@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 
-type Currency = {
+export type Currency = {
     country: string
     name: string
     amount: number

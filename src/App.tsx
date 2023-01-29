@@ -6,7 +6,11 @@ function App() {
 
     console.log(data)
 
-    return <div className="App">{data && <CurrencyDropdown />}</div>
+    return (
+        <div className="App">
+            {data && <CurrencyDropdown options={data.exchangeRates} />}
+        </div>
+    )
 }
 
 export default App

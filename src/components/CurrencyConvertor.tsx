@@ -14,11 +14,22 @@ export const CurrencyConvertor: React.FC<{}> = ({}) => {
             </div>
         )
 
-    return data ? (
-        <CurrencyDropdown
-            allCurrencies={data.allCurrencies}
-            selectedCurrency={selectedCurrency}
-            setSelectedCurrency={setSelectedCurrency}
-        />
-    ) : null
+    return (
+        <div className="flex flex-col w-full bg-white rounded-xl p-6">
+            <label className="text-gray-500">
+                Amount in CZK
+                <input
+                    type="number"
+                    className="border-2 border-gray-200 shadow-sm rounded"
+                />
+            </label>
+            {data && (
+                <CurrencyDropdown
+                    allCurrencies={data.allCurrencies}
+                    selectedCurrency={selectedCurrency}
+                    setSelectedCurrency={setSelectedCurrency}
+                />
+            )}
+        </div>
+    )
 }

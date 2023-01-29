@@ -15,15 +15,15 @@ export const CurrencyConvertor: React.FC<{}> = ({}) => {
     if (error || !data) return <span>error...</span>
 
     return (
-        <div className="flex flex-col gap-4 w-full bg-white rounded-xl p-6 items-center">
-            <div className="text-gray-400 flex flex-col w-full">
+        <div className="flex w-full flex-col items-center gap-4 rounded-xl bg-white p-6">
+            <div className="flex w-full flex-col text-gray-400">
                 Amount in CZK
                 <input
                     type="number"
-                    className="text-gray-700 border-2 border-gray-200 shadow-sm rounded py-2 px-4 text-xl font-semibold focus:outline-gray-300"
+                    className="rounded border-2 border-gray-200 py-2 px-4 text-xl font-semibold text-gray-700 shadow-sm focus:outline-gray-300"
                 />
             </div>
-            <div className="text-gray-400 flex flex-col w-full">
+            <div className="flex w-full flex-col text-gray-400">
                 Convert to
                 <CurrencyDropdown
                     allCurrencies={data.allCurrencies}
@@ -31,7 +31,7 @@ export const CurrencyConvertor: React.FC<{}> = ({}) => {
                     setSelectedCurrency={setSelectedCurrency}
                 />
             </div>
-            <button className="text-blue-700 font-semibold border border-blue-500 px-8 py-2 mt-2 w-44 rounded">
+            <button className="mt-2 w-44 rounded border border-blue-500 px-8 py-2 font-semibold text-blue-700">
                 Convert
             </button>
         </div>

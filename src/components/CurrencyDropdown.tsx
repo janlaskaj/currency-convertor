@@ -9,7 +9,7 @@ export const CurrencyDropdown: React.FC<{
     setSelectedCurrency: (option: Currency) => void
 }> = ({ allCurrencies, selectedCurrency, setSelectedCurrency }) => (
     <Menu as="div" className="relative inline-block">
-        <Menu.Button className="text-gray-700 inline-flex w-full justify-center items-center gap-2 rounded px-4 py-2 text-xl font-medium border-2 border-gray-200 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+        <Menu.Button className="inline-flex w-full items-center justify-center gap-2 rounded border-2 border-gray-200 px-4 py-2 text-xl font-medium text-gray-700 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <span className="w-14">{selectedCurrency?.code ?? 'Currency'}</span>
             <ChevronDown />
         </Menu.Button>
@@ -23,7 +23,7 @@ export const CurrencyDropdown: React.FC<{
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
         >
-            <Menu.Items className="absolute right-0 mt-2 w-24 h-60 overflow-scroll origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute right-0 mt-2 h-60 w-24 origin-top-right divide-y divide-gray-100 overflow-scroll rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div className="px-1 py-1 ">
                     {allCurrencies.map((currency) => (
                         <Menu.Item key={currency.code}>

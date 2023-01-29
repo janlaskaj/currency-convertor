@@ -25,8 +25,17 @@ export const useConvertedCurrencies = () => {
         ])
     }
 
+    const removeConvertedCurrency = (ts: string) => {
+        setConvertedCurrencyArray(
+            convertedCurrencyArray.filter(
+                (convertedCurrency) => convertedCurrency.ts !== ts
+            )
+        )
+    }
+
     return {
         convertedCurrencyArray,
+        removeConvertedCurrency,
         convertCurrency,
     }
 }

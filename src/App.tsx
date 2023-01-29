@@ -1,23 +1,12 @@
-import { useCurrencyData } from '@src/hooks'
-import { CurrencyDropdown } from '@src/components'
+import { Homepage } from '@src/pages'
 
 function App() {
-    const { data, isLoading, error, selectedOption, setSelectedOption } =
-        useCurrencyData()
-
-    if (error) return <span>error...</span>
-
-    if (isLoading) return <span>loading...</span>
-
     return (
-        <div className="App">
-            {data && (
-                <CurrencyDropdown
-                    options={data.exchangeRates}
-                    selectedOption={selectedOption}
-                    setSelectedOption={setSelectedOption}
-                />
-            )}
+        <div className="w-full h-screen bg-blue-600 p-6">
+            <h1 className="text-white font-extrabold text-5xl">
+                Currency converter
+            </h1>
+            <Homepage />
         </div>
     )
 }

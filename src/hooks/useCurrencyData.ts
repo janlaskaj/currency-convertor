@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useQuery } from 'react-query'
 
 export type Currency = {
@@ -49,10 +50,18 @@ const parseCurrencyData = (data?: string) => {
 }
 
 export const useCurrencyData = () => {
+    const [selectedOption, setSelectedOption] = useState<Currency | undefined>()
+
     const { data, isLoading, error } = useQuery(['currencyData'], async () => {
         const response = await fetch(`${proxyUrl}/${currencyDataUrl}`)
         return await response.text()
     })
 
-    return { data: parseCurrencyData(data), isLoading, error }
+    return {
+        data: parseCurrencyData(data),
+        isLoading,
+        error,
+        selectedOption,
+        setSelectedOption,
+    }
 }

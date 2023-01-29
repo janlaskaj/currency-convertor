@@ -24,7 +24,7 @@ export const CurrencyConvertor: React.FC<{
                 Amount in CZK
                 <input
                     type="number"
-                    value={amountToConvert === 0 ? undefined : amountToConvert}
+                    value={amountToConvert || ''}
                     step="any"
                     onChange={(event) =>
                         setAmountToConvert(Number(event.target.value))

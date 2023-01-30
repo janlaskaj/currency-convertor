@@ -1,5 +1,5 @@
 import { CurrencyConvertor } from '@src/components/'
-import { useConvertedCurrencies } from '@src/hooks/useConvertedCurrencies'
+import { useConvertedCurrencies } from '@src/hooks/'
 import { Trash } from '@src/icons'
 
 export const Homepage = () => {

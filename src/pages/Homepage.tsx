@@ -12,6 +12,7 @@ export const Homepage = () => {
             <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2">
                 {convertedCurrencyArray.map((convertedCurrency) => (
                     <ConvertedCurrencyComponent
+                        key={convertedCurrency.ts}
                         convertedCurrency={convertedCurrency}
                         removeConvertedCurrency={removeConvertedCurrency}
                     />

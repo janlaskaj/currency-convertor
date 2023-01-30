@@ -53,9 +53,7 @@ export const CurrencyConvertor: React.FC<{
                               convertCurrency(selectedCurrency, amountToConvert)
                         : undefined
                 }
-                disabled={
-                    selectedCurrency === undefined || amountToConvert === 0
-                }
+                disabled={selectedCurrency === undefined || !amountToConvert}
             >
                 Convert
             </button>

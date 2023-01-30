@@ -19,7 +19,7 @@ export const CurrencyConvertor: React.FC<{
     if (error || !data) return <span>error...</span>
 
     return (
-        <div className="flex w-full flex-col items-center gap-4 rounded-xl bg-white p-6">
+        <div className="flex w-full flex-col items-center gap-4 rounded-xl bg-white p-6 lg:flex-row lg:items-end">
             <div className="flex w-full flex-col text-gray-400">
                 Amount in CZK
                 <input
@@ -41,7 +41,7 @@ export const CurrencyConvertor: React.FC<{
                 />
             </div>
             <button
-                className="mt-2 w-44 rounded border border-blue-500 px-8 py-2 font-semibold text-blue-700 disabled:border-gray-300 disabled:text-gray-300"
+                className="mt-2 w-44 rounded border border-blue-500 px-8 py-2 font-semibold text-blue-700 disabled:border-gray-300 disabled:text-gray-300 lg:mt-0 lg:mb-1"
                 onClick={
                     selectedCurrency && amountToConvert
                         ? () =>

@@ -8,36 +8,34 @@ export type Currency = {
     code: string
     rate: number
 }
-type ExchangeData = { date: string; allCurrencies: Currency[] }
 
 const proxyUrl = 'http://localhost:5001'
 const exchangeDataUrl =
     'https://www.cnb.cz/en/financial-markets/foreign-exchange-market/central-bank-exchange-rate-fixing/central-bank-exchange-rate-fixing/daily.txt'
 const dateSeparator = '#'
 const exchangeDataSeparator = '|'
+const dateLineIndex = 0
 const descriptionLineIndex = 1
 
 const parseExchangeData = (data?: string) => {
     if (data === undefined) return undefined
 
-    return data.split('\n').reduce<ExchangeData>(
-        (previous, current, currentIndex) => {
-            // remove last empty line and description line
-            if (current.length === 0 || currentIndex === descriptionLineIndex)
+    return data
+        .split('\n')
+        .reduce<Currency[]>((previous, current, currentIndex) => {
+            // remove last empty line, description line and date line
+            if (
+                current.length === 0 ||
+                currentIndex === descriptionLineIndex ||
+                currentIndex === dateLineIndex
+            )
                 return previous
-
-            // first line with date
-            if (currentIndex == 0) {
-                previous.date = current.split(dateSeparator)[0]
-
-                return previous
-            }
 
             const [country, name, amount, code, rate] = current.split(
                 exchangeDataSeparator
             )
 
-            previous.allCurrencies.push({
+            previous.push({
                 country,
                 name,
                 amount: Number(amount),
@@ -45,9 +43,7 @@ const parseExchangeData = (data?: string) => {
                 rate: Number(rate),
             })
             return previous
-        },
-        { date: '', allCurrencies: [] }
-    )
+        }, [])
 }
 
 export const useCurrencyData = () => {
@@ -61,7 +57,7 @@ export const useCurrencyData = () => {
     })
 
     return {
-        data: parseExchangeData(data),
+        allCurrencies: parseExchangeData(data),
         isLoading,
         error,
         selectedCurrency,

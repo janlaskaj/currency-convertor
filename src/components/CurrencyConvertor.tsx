@@ -6,8 +6,13 @@ export const CurrencyConvertor: React.FC<{
     convertCurrency: (targetCurrency: Currency, amount: number) => void
 }> = ({ convertCurrency }) => {
     const [amountToConvert, setAmountToConvert] = useState<number>()
-    const { data, isLoading, error, selectedCurrency, setSelectedCurrency } =
-        useCurrencyData()
+    const {
+        allCurrencies,
+        isLoading,
+        error,
+        selectedCurrency,
+        setSelectedCurrency,
+    } = useCurrencyData()
 
     if (isLoading)
         return (
@@ -16,7 +21,7 @@ export const CurrencyConvertor: React.FC<{
             </div>
         )
 
-    if (error || !data) return <span>error...</span>
+    if (error || !allCurrencies) return <span>error...</span>
 
     return (
         <div className="flex w-full flex-col items-center gap-4 rounded-xl bg-white p-6 shadow-xl lg:flex-row lg:items-end">
@@ -35,7 +40,7 @@ export const CurrencyConvertor: React.FC<{
             <div className="flex w-full flex-col text-gray-400">
                 Convert to
                 <CurrencyDropdown
-                    allCurrencies={data.allCurrencies}
+                    allCurrencies={allCurrencies}
                     selectedCurrency={selectedCurrency}
                     setSelectedCurrency={setSelectedCurrency}
                 />

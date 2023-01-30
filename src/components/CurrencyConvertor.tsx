@@ -19,7 +19,7 @@ export const CurrencyConvertor: React.FC<{
     if (error || !data) return <span>error...</span>
 
     return (
-        <div className="flex w-full flex-col items-center gap-4 rounded-xl bg-white p-6 lg:flex-row lg:items-end">
+        <div className="flex w-full flex-col items-center gap-4 rounded-xl bg-white p-6 shadow-xl lg:flex-row lg:items-end">
             <div className="flex w-full flex-col text-gray-400">
                 Amount in CZK
                 <input

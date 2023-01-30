@@ -12,7 +12,7 @@ export const Homepage = () => {
                 {convertedCurrencyArray.map((convertedCurrency) => (
                     <div
                         key={convertedCurrency.ts}
-                        className="relative flex flex-col items-center gap-3 rounded-xl bg-white p-2 text-gray-500"
+                        className="relative flex flex-col items-center gap-3 rounded-xl bg-white p-2 text-gray-500 shadow-xl"
                     >
                         <button
                             className="absolute top-2 right-2 rounded p-1 hover:bg-gray-200"

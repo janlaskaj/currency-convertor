@@ -18,7 +18,7 @@ export const useConvertedCurrencies = () => {
             {
                 targetCurrency,
                 amount,
-                result: amount / targetCurrency.rate / targetCurrency.amount,
+                result: (amount / targetCurrency.rate) * targetCurrency.amount,
                 ts: new Date().toISOString(),
             },
             ...convertedCurrencyArray,

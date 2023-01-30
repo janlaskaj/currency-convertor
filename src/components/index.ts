@@ -1,3 +1,3 @@
 export * from './CurrencyDropdown'
-export * from './CurrencyConvertor'
+export * from './CurrencyConvertor/CurrencyConvertor'
 export * from './Spinner'

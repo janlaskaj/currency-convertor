@@ -8,7 +8,7 @@ export const Homepage = () => {
     return (
         <div className="flex flex-col gap-6">
             <CurrencyConvertor convertCurrency={convertCurrency} />
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2">
                 {convertedCurrencyArray.map((convertedCurrency) => (
                     <div
                         key={convertedCurrency.ts}
@@ -23,12 +23,14 @@ export const Homepage = () => {
                             <Trash />
                         </button>
 
-                        <span>{convertedCurrency.amount} CZK</span>
-                        <span className="text-3xl font-extrabold text-blue-500">
+                        <span className="break-all">
+                            {convertedCurrency.amount} CZK
+                        </span>
+                        <span className="break-all text-3xl font-extrabold text-blue-500">
                             {convertedCurrency.result.toFixed(3)}{' '}
                             {convertedCurrency.targetCurrency.code}
                         </span>
-                        <span>
+                        <span className="break-all">
                             1 CZK ={' '}
                             {(
                                 1 / convertedCurrency.targetCurrency.rate

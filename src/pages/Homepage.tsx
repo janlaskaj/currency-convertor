@@ -5,6 +5,7 @@ import { Trash } from '@src/icons'
 export const Homepage = () => {
     const { convertCurrency, removeConvertedCurrency, convertedCurrencyArray } =
         useConvertedCurrencies()
+
     return (
         <div className="flex flex-col gap-6">
             <CurrencyConvertor convertCurrency={convertCurrency} />
